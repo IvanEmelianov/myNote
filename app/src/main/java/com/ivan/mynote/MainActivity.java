@@ -22,10 +22,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+//TODO - создать пакет "activity"
+//TODO - создать пакет "entity". У тебя сущность Note
 public class MainActivity extends AppCompatActivity {
     TextView tvNote;
     ImageButton btnNote;
 
+    // TODO - RecyclerView называй list..(лист чего?)
     RecyclerView recyclerView;
     NoteAdapter rvAdapter;
     LinearLayoutManager rvlManager;
@@ -75,14 +78,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //TODO - помуче public?
     public void openNotes(){
         Intent transitionNotes = new Intent(MainActivity.this, Notes.class);
         startActivity(transitionNotes);
     }
 
+    //TODO - помуче public?
     public void noteList(){
         mNote = new ArrayList<>();
         mNote.add(new Note("Заголовок", "Пока пусто..."));
-
+        mNote.add(new Note("Заголовок1", "Пока пусто..."));
+        mNote.add(new Note("Заголовок2", "Пока пусто..."));
+        mNote.add(new Note("Заголовок3", "Пока пусто..."));
+        mNote.add(new Note("Заголовок4", "Пока пусто..."));
+        mNote.add(new Note("Заголовок5", "Пока пусто..."));
     }
 }

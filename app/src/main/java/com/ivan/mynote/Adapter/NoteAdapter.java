@@ -27,25 +27,21 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     ViewHolder viewHolder;
     private ArrayList<Note> mNote;
 
-
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView title;
         public TextView data;
         public TextView description;
 
-
-
         public ViewHolder(View view){
             super(view);
-            title = (TextView) view.findViewById(R.id.titleNote);
-            description = (TextView) view.findViewById(R.id.description);
+            title = view.findViewById(R.id.titleNote);
+            description = view.findViewById(R.id.description);
 
             Calendar calendar = Calendar.getInstance();
             String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-            data = (TextView) view.findViewById(R.id.tvData);
+            data = view.findViewById(R.id.tvData);
             data.setText(currentDate);
-
         }
     }
 
