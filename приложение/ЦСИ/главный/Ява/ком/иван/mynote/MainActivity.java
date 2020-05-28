@@ -28,13 +28,11 @@ public class MainActivity extends AppCompatActivity {
     TextView tvNote;
     ImageButton btnNote;
 
-    // TODO - RecyclerView называй list..(лист чего?)
-    RecyclerView recyclerView;
+    RecyclerView listNote;
     NoteAdapter rvAdapter;
     LinearLayoutManager rvlManager;
 
     ArrayList<Note> mNote;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         noteList();
     
-        //tvNote.setText(valueOf(getItemCound)); 
+        // tvNote.setText(valueOf(getItemCound)); 
         // Тип мы переопределяет метод getItenCound и из int получаем String
 
         initRecyclerView();
@@ -57,38 +55,22 @@ public class MainActivity extends AppCompatActivity {
                 openNotes();
             }
         });
-
-        recyclerView.setOnClickListener(new AdapterView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Номер ", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     private void initRecyclerView (){
-        recyclerView = findViewById(R.id.recyclerView);
+        listNote = findViewById(R.id.recyclerView);
         rvAdapter = new NoteAdapter(mNote);
         rvlManager = new LinearLayoutManager(this);
-        recyclerView.setAdapter(rvAdapter);
-        recyclerView.setLayoutManager(rvlManager);
-
-        recyclerView.setOnClickListener(new AdapterView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Номер ", Toast.LENGTH_LONG).show();
-            }
-        });
+        listNote.setAdapter(rvAdapter);
+        listNite.setLayoutManager(rvlManager);
     }
 
-    //TODO - помуче public?
-    public void openNotes(){
+    private void openNotes(){
         Intent transitionNotes = new Intent(MainActivity.this, Notes.class);
         startActivity(transitionNotes);
     }
 
-    //TODO - помуче public?
-    public void noteList(){
+    private void noteList(){
         mNote = new ArrayList<>();
         mNote.add(new Note("Заголовок", "Пока пусто..."));
         mNote.add(new Note("Заголовок1", "Пока пусто..."));
