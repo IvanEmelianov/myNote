@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         btnNote = findViewById(R.id.btnNote);
 
         noteList();
+    
+        //tvNote.setText(valueOf(getItemCound)); 
+        // Тип мы переопределяет метод getItenCound и из int получаем String
 
         initRecyclerView();
 
