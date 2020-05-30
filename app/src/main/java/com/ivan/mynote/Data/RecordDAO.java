@@ -12,6 +12,7 @@ import java.util.List;
 
 @Dao
 public interface RecordDAO {
+
     @Query("select * from record")
     List<Record> getAllRecord();
 

@@ -27,13 +27,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView data;
-        public TextView title;
+        TextView data;
+        TextView text;
+        TextView title;
         ImageButton delete;
 
         public ViewHolder(View view){
             super(view);
-            title = view.findViewById(R.id.description);
+            title = view.findViewById(R.id.titleNote);
+            text = view.findViewById(R.id.description);
             delete = view.findViewById(R.id.btnDelete);
             Calendar calendar = Calendar.getInstance();
             String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
@@ -59,6 +61,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.title.setText(records.get(position).getTitle());
+        holder.text.setText(records.get(position).getText());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

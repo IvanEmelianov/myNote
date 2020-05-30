@@ -7,6 +7,7 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,7 +53,8 @@ public class Notes extends AppCompatActivity {
 
     private void saveMember() {
         final RecordAddDataBase recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
-        Record record = new Record(edTitle.getText().toString(), edTitle.getText().toString());
+        Record record = new Record(edTitle.getText().toString(), edText.getText().toString());
+        Log.d("tagin", "eeee " + edText.getText().toString());
         recordAddDataBase.RecordDAO().insertRecord(record);
         startActivity(new Intent(Notes.this, MainActivity.class));
     }

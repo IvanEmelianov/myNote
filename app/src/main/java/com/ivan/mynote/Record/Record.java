@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "record")
-public class Record {
+public class Record extends Throwable {
     @PrimaryKey(autoGenerate = true)
 
     @ColumnInfo(name = "recordId")
