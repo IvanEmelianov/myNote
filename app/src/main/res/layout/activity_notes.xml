@@ -5,19 +5,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".Notes">
+    style="@style/AppTheme"
+    tools:context=".Entity.Notes">
 
     <EditText
+        android:id="@+id/edTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Добавить заметку"
+        android:gravity="start"
+        android:hint="Заголовок"
+        android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textColorHint="#D67712"
-        android:textStyle="bold"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edText"
+        android:layout_marginBottom="64dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="Добавить заметкy"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textColorHint="#D67712"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTitle" />
+
+
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/delete" />
+
+    <ImageButton
+        android:id="@+id/btnGallery"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black"
+        android:clickable="true"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDelete"
+        app:srcCompat="@drawable/gallery" />
+
+    <ImageButton
+        android:id="@+id/btnCamera"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black"
+        android:clickable="true"
+        android:layout_marginStart="16dp"
+
+        app:layout_constraintStart_toEndOf="@+id/btnGallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/camera"
+        tools:layout_editor_absoluteX="98dp" />
+
+    <ImageButton
+        android:id="@+id/btnMarker"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/black"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/btnCamera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/marker" />
+
+    <ImageButton
+        android:id="@+id/btnNewNote"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/black"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/btnMarker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/new_note" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

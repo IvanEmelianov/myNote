@@ -1,83 +1,75 @@
 package com.ivan.mynote.Adapter;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ivan.mynote.MainActivity;
+import com.ivan.mynote.Data.RecordAddDataBase;
 import com.ivan.mynote.R;
+import com.ivan.mynote.Record.Record;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     ViewHolder viewHolder;
-    private ArrayList<Note> mNote;
-
+    private List<Record> records;
+    Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView title;
         public TextView data;
-        public TextView description;
-
-
+        public TextView title;
+        ImageButton delete;
 
         public ViewHolder(View view){
             super(view);
-            title = (TextView) view.findViewById(R.id.titleNote);
-            description = (TextView) view.findViewById(R.id.description);
-
+            title = view.findViewById(R.id.description);
+            delete = view.findViewById(R.id.btnDelete);
             Calendar calendar = Calendar.getInstance();
             String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
             data = (TextView) view.findViewById(R.id.tvData);
             data.setText(currentDate);
-
         }
     }
 
-    public NoteAdapter(ArrayList<Note> mNote){
-        this.mNote = mNote;
+    public NoteAdapter(List<Record> mRecords){
+        this.records = mRecords;
     }
 
     @NonNull
     @Override
     public NoteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         View noteView = inflater.inflate(R.layout.recycler_view, parent, false);
-
         viewHolder = new ViewHolder(noteView);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Note note = mNote.get(position);
-
-        viewHolder.title.setText(note.getTitle());
-        //viewHolder.data.setText(note.getData());
-        viewHolder.description.setText(note.getDescription());
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.title.setText(records.get(position).getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Номер " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mNote.size();
+        return records.size();
     }
 }
 
