@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:background="#2C2A2A"
+    android:layout_margin="5dp"
+    android:padding="10dp"
+    android:background="@drawable/recycler"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TextView
@@ -15,6 +16,9 @@
             android:text="Название"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +31,9 @@
         android:textColor="@android:color/white"
         android:textSize="15dp"
         android:textStyle="italic"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleNote" />
@@ -39,6 +46,9 @@
             android:textColor="@android:color/white"
             android:textSize="15dp"
             android:textStyle="italic"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvData"
             android:layout_marginStart="64dp"
