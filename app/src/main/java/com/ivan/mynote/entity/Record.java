@@ -1,4 +1,4 @@
-package com.ivan.mynote.Record;
+package com.ivan.mynote.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -17,9 +17,13 @@ public class Record {
     @ColumnInfo (name = "text")
     private String text;
 
-    public Record(String title, String text){
+    @ColumnInfo (name = "date")
+    private String date;
+
+    public Record(String title, String text, String date){
        this.title = title;
        this.text = text;
+       this.date = date;
     }
 
     public String getText() {
@@ -29,6 +33,12 @@ public class Record {
     public String getTitle() {
         return title;
     }
+
+
+    public String getDate() {
+        return date;
+    }
+
 
     public int getRecordId() {
         return recordId;
@@ -40,6 +50,11 @@ public class Record {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setRecordId(int recordId) {

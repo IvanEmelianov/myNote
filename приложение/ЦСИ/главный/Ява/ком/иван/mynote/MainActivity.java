@@ -14,8 +14,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ivan.mynote.Adapter.Note;
-import com.ivan.mynote.Adapter.NoteAdapter;
+import com.ivan.mynote.adapter.Note;
+import com.ivan.mynote.adapter.NoteAdapter;
 
 import java.text.DateFormat;
 import java.util.ArrayList;

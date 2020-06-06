@@ -8,17 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+
         <activity
-            android:name=".Entity.Notes"
+            android:name=".activity.NotesActivity"
             android:label="Заметки"
-            android:parentActivityName=".Entity.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme"/>
 
         <meta-data
             android:name="android.support.PAREN_ACTIVITY"
             android:value=".MainActivity"/>
 
-        <activity android:name=".Entity.MainActivity"
+        <activity android:name=".activity.MainActivity"
                   android:theme="@style/MyNote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

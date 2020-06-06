@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     style="@style/AppTheme"
-    tools:context=".Entity.Notes">
+    tools:context=".activity.NotesActivity">
 
     <EditText
         android:id="@+id/edTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:hint="Заголовок"
+        android:hint="@string/title"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textColorHint="#D67712"
@@ -29,7 +29,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:hint="Добавить заметкy"
+        android:hint="@string/add_notes"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textColorHint="#D67712"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edDate" />
+
+    <EditText
+        android:id="@+id/edDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:enabled="false"
+        android:hint="@string/add_notes"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textColorHint="#D67712"
@@ -38,6 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTitle" />
+
 
 
 
@@ -95,7 +112,7 @@
         app:srcCompat="@drawable/marker" />
 
     <ImageButton
-        android:id="@+id/btnNewNote"
+        android:id="@+id/btnUpdateNote"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"

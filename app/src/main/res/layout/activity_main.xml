@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Заметки"
+        android:text="@string/notes"
         android:textColor="@android:color/white"
         android:textSize="35sp"
         android:textStyle="bold" />
@@ -43,7 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
-        android:text="0 заметок"
+        android:text="@string/count_members"
         android:textColor="@android:color/white"
         android:textStyle="normal" />
 

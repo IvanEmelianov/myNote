@@ -1,19 +1,21 @@
-package com.ivan.mynote.Adapter;
+package com.ivan.mynote.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ivan.mynote.Data.RecordAddDataBase;
 import com.ivan.mynote.R;
-import com.ivan.mynote.Record.Record;
+import com.ivan.mynote.activity.MainActivity;
+import com.ivan.mynote.activity.NotesActivity;
+import com.ivan.mynote.data.RecordAddDataBase;
+import com.ivan.mynote.entity.Record;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -21,26 +23,26 @@ import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    ViewHolder viewHolder;
+
+    private ViewHolder viewHolder;
     private List<Record> records;
-    Context context;
+    private Context context;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView data;
-        TextView text;
-        TextView title;
-        ImageButton delete;
+        TextView rvData;
+        TextView rvText;
+        TextView rvTitle;
 
         public ViewHolder(View view){
             super(view);
-            title = view.findViewById(R.id.titleNote);
-            text = view.findViewById(R.id.description);
-            delete = view.findViewById(R.id.btnDelete);
+            rvTitle = view.findViewById(R.id.titleNote);
+            rvText = view.findViewById(R.id.description);
+
             Calendar calendar = Calendar.getInstance();
             String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-            data = (TextView) view.findViewById(R.id.tvData);
-            data.setText(currentDate);
+            rvData = view.findViewById(R.id.tvData);
+            rvData.setText(currentDate);
         }
     }
 
@@ -60,16 +62,19 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.title.setText(records.get(position).getTitle());
-        holder.text.setText(records.get(position).getText());
+        holder.rvTitle.setText(records.get(position).getTitle());
+        holder.rvText.setText(records.get(position).getText());
+        holder.rvData.setText(records.get(position).getDate());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Номер " + position, Toast.LENGTH_SHORT).show();
+
+
+                //Toast.makeText(context, "Номер " + position, Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return records.size();
