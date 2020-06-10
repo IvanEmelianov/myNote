@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity{
     //TODO - изменить название функции
     private void dataBase(){
         //TODO - экземпляр бд создаем в onCreate
+        recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
         records = recordAddDataBase.RecordDAO().getAllRecord();
     }
 

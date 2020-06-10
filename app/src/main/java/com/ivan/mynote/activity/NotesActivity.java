@@ -2,12 +2,18 @@ package com.ivan.mynote.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,17 +33,17 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class NotesActivity extends AppCompatActivity {
+    final int CAMERA_PIC_REQUEST = 1;
+    RecordAddDataBase recordAddDataBase;
+    ImageButton delete;
+    ImageButton gallery;
+    ImageButton camera;
+    ImageButton marker;
+    ImageButton update;
+    EditText edTitle;
+    EditText edText;
+    TextView tvDate;
 
-    private ImageButton delete;
-    private ImageButton gallery;
-    private ImageButton camera;
-    private ImageButton marker;
-    private ImageButton update;
-    private EditText edTitle;
-    private EditText edText;
-    private TextView tvDate;
-    private Callback callback;
-    private RecordAddDataBase recordAddDataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +81,7 @@ public class NotesActivity extends AppCompatActivity {
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verifyPermissions();
                 openCamera();
             }
         });
@@ -110,9 +117,36 @@ public class NotesActivity extends AppCompatActivity {
         startActivityForResult(intent, ACTIVITY_SELECT_IMAGE);
     }
 
-    private void openCamera(){
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        final int CAMERA_PIC_REQUEST = 1234;
-        startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+    private void openCamera() {
+        Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(openCamera, CAMERA_PIC_REQUEST);
+     }
+
+    private void verifyPermissions(){
+        Log.d("permission", "verifyPermissions");
+
+        int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+
+        if (permissionStatus == PackageManager.PERMISSION_GRANTED){
+            openCamera();
+        }else{
+            ActivityCompat.requestPermissions(NotesActivity.this,
+                    new String[] {Manifest.permission.CAMERA},
+                    CAMERA_PIC_REQUEST);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case CAMERA_PIC_REQUEST:
+                if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    openCamera();
+                } else {
+                    Toast.makeText(this, "No permission open camera", Toast.LENGTH_SHORT).show();
+                }
+        return;
+        }
     }
 }
