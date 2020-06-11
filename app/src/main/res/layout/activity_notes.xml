@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     style="@style/AppTheme"
-    tools:context=".activity.NotesActivity">
+    tools:context=".presentation.notes_activity.NotesActivity">
 
     <EditText
         android:id="@+id/edTitle"
@@ -19,7 +19,7 @@
         android:textColorHint="#D67712"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/edText"
+        app:layout_constraintBottom_toTopOf="@+id/edDate"
         android:layout_marginBottom="64dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,8 +33,7 @@
         android:enabled="false"
         android:hint="@string/add_notes"
         android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textColorHint="#D67712"
+        android:textColor="#D67712"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

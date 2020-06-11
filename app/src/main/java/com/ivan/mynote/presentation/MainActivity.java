@@ -1,4 +1,4 @@
-package com.ivan.mynote.activity;
+package com.ivan.mynote.presentation;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,6 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,13 +15,12 @@ import com.ivan.mynote.adapter.NoteAdapter;
 import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
+import com.ivan.mynote.presentation.notes_activity.NotesActivity;
 
 import java.util.List;
 
-import javax.security.auth.callback.Callback;
-
 public class MainActivity extends AppCompatActivity{
-    private ImageButton btnNote;
+    private ImageButton btnNote; // поле
     private RecyclerView recyclerView;
     private NoteAdapter rvAdapter;
     private TextView tvNote;
@@ -42,12 +38,7 @@ public class MainActivity extends AppCompatActivity{
         recyclerView = findViewById(R.id.recyclerView);
 
 
-        btnNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNotes();
-            }
-        });
+        btnNote.setOnClickListener(v -> openNotes());
 
         AllNotesAsyncTask allNotesAsyncTask = new AllNotesAsyncTask();
         allNotesAsyncTask.execute();

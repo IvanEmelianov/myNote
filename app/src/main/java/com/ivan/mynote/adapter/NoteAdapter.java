@@ -1,20 +1,15 @@
 package com.ivan.mynote.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ivan.mynote.R;
-import com.ivan.mynote.activity.MainActivity;
-import com.ivan.mynote.activity.NotesActivity;
-import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.entity.Record;
 
 import java.text.DateFormat;

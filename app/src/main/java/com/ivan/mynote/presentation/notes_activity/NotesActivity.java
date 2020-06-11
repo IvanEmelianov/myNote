@@ -1,4 +1,4 @@
-package com.ivan.mynote.activity;
+package com.ivan.mynote.presentation.notes_activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,15 +9,12 @@ import androidx.room.Room;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,12 +24,10 @@ import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
-public class NotesActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity implements NotesView {
     final int CAMERA_PIC_REQUEST = 1;
     RecordAddDataBase recordAddDataBase;
     ImageButton delete;
@@ -58,33 +53,16 @@ public class NotesActivity extends AppCompatActivity {
         marker = findViewById(R.id.btnMarker);
         update = findViewById(R.id.btnUpdateNote);
         tvDate = findViewById(R.id.edDate);
+        recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
 
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = simpleDateFormat.format(date);
-        tvDate.setText(String.valueOf(formattedDate));
+        tvDate.setText(formattedDate);
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        gallery.setOnClickListener(v -> openGallery());
 
-            }
-        });
-
-        gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
-
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyPermissions();
-                openCamera();
-            }
-        });
+        camera.setOnClickListener(v -> verifyPermissions());
     }
 
     @Override
@@ -140,8 +118,8 @@ public class NotesActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case CAMERA_PIC_REQUEST:
-                if (grantResults.length > 0
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (/*grantResults.length > 0
+                &&*/ grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     openCamera();
                 } else {
                     Toast.makeText(this, "No permission open camera", Toast.LENGTH_SHORT).show();

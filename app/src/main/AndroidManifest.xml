@@ -23,9 +23,9 @@
 
 
         <activity
-            android:name=".activity.NotesActivity"
+            android:name=".presentation.notes_activity.NotesActivity"
             android:label="Заметки"
-            android:parentActivityName=".activity.MainActivity"
+            android:parentActivityName=".presentation.MainActivity"
             android:theme="@style/AppTheme"
             />
 
@@ -37,7 +37,7 @@
 
 
 
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".presentation.MainActivity"
                   android:theme="@style/MyNote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
