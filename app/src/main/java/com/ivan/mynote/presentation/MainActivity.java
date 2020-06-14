@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements CustomerClickList
     }
 
     @Override
-    public void onCustomerClick(int position) {
-        Record record = records.get(position);
-        NotesActivity.open(this, record.getRecordId());
+    public void onCustomerClick(String title, String text, String date, int id) {
+        NotesActivity.open(this, title, text, date, id);
+
     }
 
     private class AllNotesAsyncTask extends AsyncTask<Void, Void, Void>{

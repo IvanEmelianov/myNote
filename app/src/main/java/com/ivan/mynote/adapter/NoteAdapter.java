@@ -66,7 +66,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-        final Record record = records.get(position);
+        //final Record record = records.get(position);
 
         holder.rvTitle.setText(records.get(position).getTitle());
         holder.rvText.setText(records.get(position).getText());
@@ -74,7 +74,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
         holder.itemView.setOnClickListener(v -> {
             if (viewHolder != null){
-                listener.onCustomerClick(position);
+                listener.onCustomerClick(records.get(position).getTitle(),
+                        records.get(position).getText(), records.get(position).getDate(),
+                        records.get(position).getRecordId());
             }
         });
     }

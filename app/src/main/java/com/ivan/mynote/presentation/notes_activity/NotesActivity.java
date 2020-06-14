@@ -39,6 +39,9 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     EditText edTitle;
     EditText edText;
     TextView tvDate;
+    boolean isUpdate = false;
+    int id = -1;
+
 
 
     @Override
@@ -56,14 +59,7 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         tvDate = findViewById(R.id.edDate);
         recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
 
-
-
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("customerID")){
-            long customerId = intent.getLongExtra("CustomerID", -1);
-        }
-
-        
+        getData();
 
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -73,6 +69,22 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         gallery.setOnClickListener(v -> openGallery());
 
         camera.setOnClickListener(v -> verifyPermissions());
+
+        delete.setOnClickListener(v -> deleteMember());
+    }
+    public void getData(){
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("title")){
+            String title = intent.getStringExtra("title");
+            String text = intent.getStringExtra("text");
+            String date = intent.getStringExtra("date");
+            id = intent.getIntExtra("id",-1);
+            Log.d("tag", "Record = " + title);
+            edTitle.setText(title);
+            edText.setText(text);
+            tvDate.setText(date);
+            isUpdate = true;
+        }
     }
 
     @Override
@@ -85,7 +97,11 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.save_member:
-                saveMember();
+                if (isUpdate){
+                    updateMember();
+                }else {
+                    saveMember();
+                }
                 break;
 
         }
@@ -95,6 +111,24 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     private void saveMember() {
         Record record = new Record(edTitle.getText().toString(), edText.getText().toString(), tvDate.getText().toString());
         recordAddDataBase.RecordDAO().insertRecord(record);
+        this.finish();
+    }
+
+    private void updateMember() {
+        Record record = recordAddDataBase.RecordDAO().getRecord(id);
+        record.setTitle(edTitle.getText().toString());
+        record.setText(edText.getText().toString());
+        record.setDate(tvDate.getText().toString());
+        recordAddDataBase.RecordDAO().updateRecord(record);
+        this.finish();
+    }
+
+    private void deleteMember(){
+        Record record = recordAddDataBase.RecordDAO().getRecord(id);
+        record.setTitle(edTitle.getText().toString());
+        record.setText(edText.getText().toString());
+        record.setDate(tvDate.getText().toString());
+        recordAddDataBase.RecordDAO().deleteRecord(record);
         this.finish();
     }
 
@@ -138,9 +172,13 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         }
     }
 
-    public static void open(MainActivity activity, long customerId){
+    public static void open(MainActivity activity, String title, String text, String date, int id){
         Intent intent = new Intent(activity, NotesActivity.class);
-        intent.putExtra("customerID", customerId);
+        intent.putExtra("title", title);
+        intent.putExtra("text", text);
+        intent.putExtra("date", date);
+        intent.putExtra("id", id);
         activity.startActivity(intent);
     }
+
 }
