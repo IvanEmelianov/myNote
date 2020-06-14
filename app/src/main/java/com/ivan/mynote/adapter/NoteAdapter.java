@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ivan.mynote.CustomerClickListener;
 import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
 
@@ -16,33 +17,40 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
+
+    CustomerClickListener listener;
 
     private ViewHolder viewHolder;
     private List<Record> records;
     private Context context;
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView rvData;
+
+        TextView rvDate;
         TextView rvText;
         TextView rvTitle;
 
         public ViewHolder(View view){
             super(view);
+
             rvTitle = view.findViewById(R.id.titleNote);
             rvText = view.findViewById(R.id.description);
 
             Calendar calendar = Calendar.getInstance();
             String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-            rvData = view.findViewById(R.id.tvData);
-            rvData.setText(currentDate);
+            rvDate = view.findViewById(R.id.tvData);
+            rvDate.setText(currentDate);
         }
     }
 
-    public NoteAdapter(List<Record> mRecords){
+    public NoteAdapter(List<Record> mRecords, CustomerClickListener listener){
         this.records = mRecords;
+        this.listener = listener;
     }
 
     @NonNull
@@ -57,19 +65,20 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+
+        final Record record = records.get(position);
+
         holder.rvTitle.setText(records.get(position).getTitle());
         holder.rvText.setText(records.get(position).getText());
-        holder.rvData.setText(records.get(position).getDate());
+        holder.rvDate.setText(records.get(position).getDate());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                //Toast.makeText(context, "Номер " + position, Toast.LENGTH_SHORT).show();
+        holder.itemView.setOnClickListener(v -> {
+            if (viewHolder != null){
+                listener.onCustomerClick(position);
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return records.size();

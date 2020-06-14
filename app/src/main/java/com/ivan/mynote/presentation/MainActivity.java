@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ivan.mynote.CustomerClickListener;
 import com.ivan.mynote.adapter.NoteAdapter;
 import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.R;
@@ -19,7 +20,7 @@ import com.ivan.mynote.presentation.notes_activity.NotesActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements CustomerClickListener {
     private ImageButton btnNote; // поле
     private RecyclerView recyclerView;
     private NoteAdapter rvAdapter;
@@ -48,14 +49,12 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void initRecyclerView (){
-        rvAdapter = new NoteAdapter(records);
+        rvAdapter = new NoteAdapter(records, this::onCustomerClick);
         recyclerView.setAdapter(rvAdapter);
         tvNote.setText("Номер " + String.valueOf(rvAdapter.getItemCount()));
     }
     //TODO - изменить название функции
     private void dataBase(){
-        //TODO - экземпляр бд создаем в onCreate
-        recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
         records = recordAddDataBase.RecordDAO().getAllRecord();
     }
 
@@ -70,6 +69,13 @@ public class MainActivity extends AppCompatActivity{
             returnActivity.setDisplayHomeAsUpEnabled(true);
         }
     }
+
+    @Override
+    public void onCustomerClick(int position) {
+        Record record = records.get(position);
+        NotesActivity.open(this, record.getRecordId());
+    }
+
     private class AllNotesAsyncTask extends AsyncTask<Void, Void, Void>{
 
         @Override

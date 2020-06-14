@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
+import com.ivan.mynote.presentation.MainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,6 +55,15 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         update = findViewById(R.id.btnUpdateNote);
         tvDate = findViewById(R.id.edDate);
         recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
+
+
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("customerID")){
+            long customerId = intent.getLongExtra("CustomerID", -1);
+        }
+
+        
 
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -126,5 +136,11 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
                 }
         return;
         }
+    }
+
+    public static void open(MainActivity activity, long customerId){
+        Intent intent = new Intent(activity, NotesActivity.class);
+        intent.putExtra("customerID", customerId);
+        activity.startActivity(intent);
     }
 }

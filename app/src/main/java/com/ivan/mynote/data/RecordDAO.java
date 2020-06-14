@@ -26,5 +26,5 @@ public interface RecordDAO {
     public void deleteRecord (Record record);
 
     @Query("select * from Record where recordId ==:id")
-    public Record getRecord (long id);
+    public Record getRecord (int id);
 }
