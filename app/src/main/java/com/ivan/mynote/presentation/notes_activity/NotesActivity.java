@@ -1,14 +1,20 @@
 package com.ivan.mynote.presentation.notes_activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.room.Room;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,22 +32,30 @@ import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
 import com.ivan.mynote.presentation.MainActivity;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NotesActivity extends AppCompatActivity implements NotesView {
     final int CAMERA_PIC_REQUEST = 1;
-    RecordAddDataBase recordAddDataBase;
-    ImageButton delete;
-    ImageButton gallery;
-    ImageButton camera;
-    ImageButton marker;
-    ImageButton update;
-    EditText edTitle;
-    EditText edText;
-    TextView tvDate;
-    boolean isUpdate = false;
-    int id = -1;
+    final int ACTIVITY_SELECT_IMAGE = 123;
+    final String AUTHORITY = "com.ivan.mynote.fileprovider";
+    private Uri outputFileUri;
+    private RecordAddDataBase recordAddDataBase;
+    private ImageButton delete;
+    private ImageButton gallery;
+    private ImageButton camera;
+    private ImageButton marker;
+    private ImageButton update;
+    private EditText edTitle;
+    private EditText edText;
+    private TextView tvDate;
+    private ImageView ivPhoto;
+    private boolean isUpdate = false;
+    private int id = -1;
 
 
 
@@ -57,6 +72,7 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         marker = findViewById(R.id.btnMarker);
         update = findViewById(R.id.btnUpdateNote);
         tvDate = findViewById(R.id.edDate);
+
         recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
 
         getData();
@@ -85,6 +101,15 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
             tvDate.setText(date);
             isUpdate = true;
         }
+    }
+
+    public static void open(MainActivity activity, String title, String text, String date, int id){
+        Intent intent = new Intent(activity, NotesActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("text", text);
+        intent.putExtra("date", date);
+        intent.putExtra("id", id);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -133,16 +158,19 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     }
 
     private void openGallery(){
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        final int ACTIVITY_SELECT_IMAGE = 123;
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        intent.setType("image/*");
         startActivityForResult(intent, ACTIVITY_SELECT_IMAGE);
     }
 
     private void openCamera() {
-        Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(openCamera, CAMERA_PIC_REQUEST);
-     }
+        File file = new File(getCacheDir(), "temp.jpg");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        outputFileUri = FileProvider.getUriForFile(this, AUTHORITY, file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+        startActivityForResult(intent, CAMERA_PIC_REQUEST);
+    }
+
 
     private void verifyPermissions(){
         Log.d("permission", "verifyPermissions");
@@ -171,14 +199,25 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         return;
         }
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
 
-    public static void open(MainActivity activity, String title, String text, String date, int id){
-        Intent intent = new Intent(activity, NotesActivity.class);
-        intent.putExtra("title", title);
-        intent.putExtra("text", text);
-        intent.putExtra("date", date);
-        intent.putExtra("id", id);
-        activity.startActivity(intent);
+        Bitmap bitmap = null;
+        ivPhoto = findViewById(R.id.ivPhoto);
+
+        switch (requestCode){
+            case ACTIVITY_SELECT_IMAGE:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = intent.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                    } catch (IOException e) {
+                        Toast.makeText(this, "Error bitmap", Toast.LENGTH_SHORT).show();
+                    }
+                    ivPhoto.setImageBitmap(bitmap);
+                }
+        }
     }
 
 }

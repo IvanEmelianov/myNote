@@ -1,5 +1,7 @@
 package com.ivan.mynote;
 
+import android.media.Image;
+
 import com.ivan.mynote.entity.Record;
 
 public interface CustomerClickListener {

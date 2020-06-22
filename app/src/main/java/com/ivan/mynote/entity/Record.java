@@ -1,5 +1,8 @@
 package com.ivan.mynote.entity;
 
+import android.media.Image;
+import android.provider.MediaStore;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -22,10 +25,14 @@ public class Record implements Serializable {
     @ColumnInfo (name = "date")
     private String date;
 
+    /*@ColumnInfo (name = "photo")
+    private Image photo;*/
+
     public Record(String title, String text, String date){
        this.title = title;
        this.text = text;
        this.date = date;
+       /*this.photo = photo;*/
     }
 
     public String getText() {
@@ -41,6 +48,9 @@ public class Record implements Serializable {
         return date;
     }
 
+  /*  public Image getPhoto() {
+        return photo;
+    }*/
 
     public int getRecordId() {
         return recordId;
@@ -54,10 +64,13 @@ public class Record implements Serializable {
         this.text = text;
     }
 
-
     public void setDate(String date) {
         this.date = date;
     }
+
+    /*public void setPhoto(Image photo) {
+        this.photo = photo;
+    }*/
 
     public void setRecordId(int recordId) {
         this.recordId = recordId;
