@@ -9,6 +9,7 @@ import androidx.core.content.FileProvider;
 import androidx.room.Room;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -72,6 +73,7 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         marker = findViewById(R.id.btnMarker);
         update = findViewById(R.id.btnUpdateNote);
         tvDate = findViewById(R.id.edDate);
+        ivPhoto = findViewById(R.id.ivPhoto);
 
         recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
 
@@ -164,11 +166,12 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     }
 
     private void openCamera() {
-        File file = new File(getCacheDir(), "temp.jpg");
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        outputFileUri = FileProvider.getUriForFile(this, AUTHORITY, file);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-        startActivityForResult(intent, CAMERA_PIC_REQUEST);
+        if (intent.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(intent, CAMERA_PIC_REQUEST);
+        }else{
+            Toast.makeText(this, "Error open camera", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -204,11 +207,10 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         super.onActivityResult(requestCode, resultCode, intent);
 
         Bitmap bitmap = null;
-        ivPhoto = findViewById(R.id.ivPhoto);
 
-        switch (requestCode){
+        switch (requestCode) {
             case ACTIVITY_SELECT_IMAGE:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = intent.getData();
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
@@ -218,6 +220,13 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
                     ivPhoto.setImageBitmap(bitmap);
                 }
         }
+        switch (requestCode){
+            case CAMERA_PIC_REQUEST:
+                //if (requestCode == Activity.RESULT_OK){
+                    bitmap = (Bitmap) intent.getExtras().get("data");
+                    if (bitmap != null){
+                        ivPhoto.setImageBitmap(bitmap);
+                    }
+                }
     }
-
 }

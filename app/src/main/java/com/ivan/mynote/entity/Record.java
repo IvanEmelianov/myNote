@@ -25,14 +25,13 @@ public class Record implements Serializable {
     @ColumnInfo (name = "date")
     private String date;
 
-    /*@ColumnInfo (name = "photo")
-    private Image photo;*/
+   /* @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;*/
 
     public Record(String title, String text, String date){
        this.title = title;
        this.text = text;
        this.date = date;
-       /*this.photo = photo;*/
     }
 
     public String getText() {
@@ -48,8 +47,8 @@ public class Record implements Serializable {
         return date;
     }
 
-  /*  public Image getPhoto() {
-        return photo;
+    /*public byte[] getImage() {
+        return image;
     }*/
 
     public int getRecordId() {
@@ -68,8 +67,8 @@ public class Record implements Serializable {
         this.date = date;
     }
 
-    /*public void setPhoto(Image photo) {
-        this.photo = photo;
+   /* public void setImage(byte[] image) {
+        this.image = image;
     }*/
 
     public void setRecordId(int recordId) {
