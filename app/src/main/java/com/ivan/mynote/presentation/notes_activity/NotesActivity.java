@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ivan.mynote.data.DataConverter;
 import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
@@ -57,6 +58,7 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     private ImageView ivPhoto;
     private boolean isUpdate = false;
     private int id = -1;
+    Bitmap bitmap = null;
 
 
 
@@ -90,26 +92,14 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
 
         delete.setOnClickListener(v -> deleteMember());
     }
-    public void getData(){
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("title")){
-            String title = intent.getStringExtra("title");
-            String text = intent.getStringExtra("text");
-            String date = intent.getStringExtra("date");
-            id = intent.getIntExtra("id",-1);
-            Log.d("tag", "Record = " + title);
-            edTitle.setText(title);
-            edText.setText(text);
-            tvDate.setText(date);
-            isUpdate = true;
-        }
-    }
 
-    public static void open(MainActivity activity, String title, String text, String date, int id){
+
+    public static void open(MainActivity activity, String title, String text, String date, byte[] image, int id){
         Intent intent = new Intent(activity, NotesActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("text", text);
         intent.putExtra("date", date);
+        intent.putExtra("photo", image);
         intent.putExtra("id", id);
         activity.startActivity(intent);
     }
@@ -135,11 +125,7 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
         return super.onOptionsItemSelected(item);
     }
 
-    private void saveMember() {
-        Record record = new Record(edTitle.getText().toString(), edText.getText().toString(), tvDate.getText().toString());
-        recordAddDataBase.RecordDAO().insertRecord(record);
-        this.finish();
-    }
+
 
     private void updateMember() {
         Record record = recordAddDataBase.RecordDAO().getRecord(id);
@@ -206,7 +192,7 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        Bitmap bitmap = null;
+
 
         switch (requestCode) {
             case ACTIVITY_SELECT_IMAGE:
@@ -228,5 +214,27 @@ public class NotesActivity extends AppCompatActivity implements NotesView {
                         ivPhoto.setImageBitmap(bitmap);
                     }
                 }
+    }
+
+    private void saveMember() {
+        Record record = new Record(edTitle.getText().toString(), edText.getText().toString(), tvDate.getText().toString());
+        recordAddDataBase.RecordDAO().insertRecord(record);
+        Log.d("tag", String.valueOf(recordAddDataBase));
+        this.finish();
+
+    }
+    public void getData(){
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("title")){
+            String title = intent.getStringExtra("title");
+            String text = intent.getStringExtra("text");
+            String date = intent.getStringExtra("date");
+            id = intent.getIntExtra("id",-1);
+            Log.d("tag", "Record = " + title);
+            edTitle.setText(title);
+            edText.setText(text);
+            tvDate.setText(date);
+            isUpdate = true;
+        }
     }
 }

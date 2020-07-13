@@ -11,25 +11,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fde08319-c4d4-4a3f-8a19-a81ea2bc194e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/data/DataConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyNote.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyNote.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/adapter/NoteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/adapter/NoteAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/entity/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/entity/Record.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/presentation/notes_activity/NotesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ivan/mynote/presentation/notes_activity/NotesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recycler_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/recycler_view.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="f077af2" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="F2S4TA15B1050100" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -72,8 +81,8 @@
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="valueResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -82,6 +91,11 @@
   </component>
   <component name="ProjectId" id="1cJgKn19T8c7zF3Ys8gF0g7riSu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="f077af2" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-18T06:21:53.152Z" />
@@ -104,18 +118,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\Documents\GitHub\MyNote\app\src\main\res\drawable" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -227,5 +229,35 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="73" key="#com.intellij.ide.util.MemberChooser" timestamp="1594470935157">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="73" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1594470935157" />
+    <state x="839" y="122" key="FileChooserDialogImpl" timestamp="1593578532860">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="839" y="122" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1593578532860" />
+    <state width="1323" height="196" key="GridCell.Tab.0.bottom" timestamp="1594471143931">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="196" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594471143931" />
+    <state width="1323" height="196" key="GridCell.Tab.0.center" timestamp="1594471143931">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="196" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594471143931" />
+    <state width="1323" height="196" key="GridCell.Tab.0.left" timestamp="1594471143931">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="196" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594471143931" />
+    <state width="1323" height="196" key="GridCell.Tab.0.right" timestamp="1594471143931">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="196" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594471143931" />
+    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1593237172004">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1593237172004" />
   </component>
 </project>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -71,6 +72,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         holder.rvTitle.setText(records.get(position).getTitle());
         holder.rvText.setText(records.get(position).getText());
         holder.rvDate.setText(records.get(position).getDate());
+
 
         holder.itemView.setOnClickListener(v -> {
             if (viewHolder != null){
