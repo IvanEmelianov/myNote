@@ -26,7 +26,7 @@
         >
 
         <activity
-            android:name=".presentation.notes_activity.NotesActivity"
+            android:name=".presentation.NotesActivity"
             android:label="Заметки"
             android:parentActivityName=".presentation.MainActivity"
             android:theme="@style/AppTheme"

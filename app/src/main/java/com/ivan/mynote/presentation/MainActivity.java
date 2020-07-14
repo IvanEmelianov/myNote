@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -17,7 +16,6 @@ import com.ivan.mynote.adapter.NoteAdapter;
 import com.ivan.mynote.data.RecordAddDataBase;
 import com.ivan.mynote.R;
 import com.ivan.mynote.entity.Record;
-import com.ivan.mynote.presentation.notes_activity.NotesActivity;
 
 import java.util.List;
 
@@ -74,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements CustomerClickList
     @Override
     public void onCustomerClick(String title, String text, String date, int id) {
         NotesActivity.open(this, title, text, date, id);
-
     }
+
 
     private class AllNotesAsyncTask extends AsyncTask<Void, Void, Void>{
 
