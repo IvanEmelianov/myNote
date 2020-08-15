@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,40 +19,29 @@ import java.util.List;
 
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
-
     CustomerClickListener listener;
-
     private ViewHolder viewHolder;
     private List<Record> records;
     private Context context;
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-
         TextView rvDate;
         TextView rvText;
         TextView rvTitle;
-
         public ViewHolder(View view){
             super(view);
-
             rvTitle = view.findViewById(R.id.titleNote);
             rvText = view.findViewById(R.id.description);
-
             Calendar calendar = Calendar.getInstance();
             String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
             rvDate = view.findViewById(R.id.tvData);
             rvDate.setText(currentDate);
         }
     }
-
     public NoteAdapter(List<Record> mRecords, CustomerClickListener listener){
         this.records = mRecords;
         this.listener = listener;
     }
-
     @NonNull
     @Override
     public NoteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,17 +51,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         viewHolder = new ViewHolder(noteView);
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
-        //final Record record = records.get(position);
-
         holder.rvTitle.setText(records.get(position).getTitle());
         holder.rvText.setText(records.get(position).getText());
         holder.rvDate.setText(records.get(position).getDate());
-
-
         holder.itemView.setOnClickListener(v -> {
             if (viewHolder != null){
                 listener.onCustomerClick(records.get(position).getTitle(),
@@ -82,7 +64,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return records.size();

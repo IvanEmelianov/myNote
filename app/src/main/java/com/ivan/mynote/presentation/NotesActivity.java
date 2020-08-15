@@ -34,32 +34,25 @@ public class NotesActivity extends AppCompatActivity {
     private TextView tvDate;
     private boolean isUpdate = false;
     private int id = -1;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
-
         edTitle = findViewById(R.id.edTitle);
         edText = findViewById(R.id.edText);
         tvDate = findViewById(R.id.edDate);
-        /*delete = findViewById(R.id.btnDelete);*/
-
+        delete = findViewById(R.id.btnDelete);
         recordAddDataBase = Room.databaseBuilder(getApplicationContext(), RecordAddDataBase.class, "RecordDB").allowMainThreadQueries().build();
-
         getData();
-
+        date();
+        delete.setOnClickListener(v -> deleteMember());
+    }
+    private void date(){
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = simpleDateFormat.format(date);
         tvDate.setText(formattedDate);
-
-        /*delete.setOnClickListener(v -> deleteMember());*/
     }
-
-
     public static void open(MainActivity activity, String title, String text, String date, int id){
         Intent intent = new Intent(activity, NotesActivity.class);
         intent.putExtra("title", title);
@@ -68,7 +61,6 @@ public class NotesActivity extends AppCompatActivity {
         intent.putExtra("id", id);
         activity.startActivity(intent);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -85,13 +77,9 @@ public class NotesActivity extends AppCompatActivity {
                     saveMember();
                 }
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
     private void updateMember() {
         Record record = recordAddDataBase.RecordDAO().getRecord(id);
         record.setTitle(edTitle.getText().toString());
@@ -100,7 +88,6 @@ public class NotesActivity extends AppCompatActivity {
         recordAddDataBase.RecordDAO().updateRecord(record);
         this.finish();
     }
-
     private void deleteMember(){
         Record record = recordAddDataBase.RecordDAO().getRecord(id);
         record.setTitle(edTitle.getText().toString());
@@ -109,13 +96,11 @@ public class NotesActivity extends AppCompatActivity {
         recordAddDataBase.RecordDAO().deleteRecord(record);
         this.finish();
     }
-
     private void saveMember() {
         Record record = new Record(edTitle.getText().toString(), edText.getText().toString(), tvDate.getText().toString());
         recordAddDataBase.RecordDAO().insertRecord(record);
         Log.d("tag", String.valueOf(recordAddDataBase));
         this.finish();
-
     }
     public void getData(){
         Intent intent = getIntent();
